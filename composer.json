@@ -1,0 +1,16 @@
+{
+	"name": "mage2pro/oro"
+	,"version": "0.0.1"
+	,"description": "A custom integration between Magento 2 and OroCRM."
+	,"type": "magento2-module"
+	,"homepage": "https://ocrm.pro"
+	,"license": "proprietary"
+	,"authors": [{
+		"name": "Dmitry Fedyuk",
+		"email": "admin@mage2.pro",
+		"homepage": "https://mage2.pro/users/dmitry_fedyuk",
+		"role": "Developer"
+	}]
+	,"require": {"mage2pro/core": ">=2.6.25"}
+	,"autoload": {"files": ["registration.php"], "psr-4": {"Df\\Oro\\": ""}}
+}
