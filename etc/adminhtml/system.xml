@@ -1,0 +1,71 @@
+<?xml version='1.0'?>
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:module:Df_Config:etc/system_file.xsd'
+>
+	<system>
+		<section
+			id='df_oro'
+            translate='label'
+            type='text'
+            showInDefault='1'
+            showInWebsite='1'
+            showInStore='1'
+		>
+<!--
+2015-09-25
+1-я и 2-я цифры sortOrder соответствуют порядковому номеру первой буквы модуля
+в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
+3-я и 4-я цифры sortOrder соответствуют порядковому номеру второй буквы модуля
+в английском алфавите.
+-->
+			<tab>_df</tab>
+			<label>OroCRM</label>
+			<class>separator-top</class>
+			<!-- 2015-10-05 https://mage2.pro/t/114 -->
+			<resource>Df_Oro::config</resource>
+			<group
+				id='general'
+				translate='label'
+				type='text'
+				sortOrder='1518'
+				showInDefault='1'
+				showInWebsite='1'
+				showInStore='1'
+			>
+				<label>General</label>
+				<dfExtension>Df_Oro</dfExtension>
+				<frontend_model>Df\Config\Fieldset</frontend_model>
+				<field
+					id='enable'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+					sortOrder='1'
+					showInDefault='1'
+					showInWebsite='1'
+					showInStore='1'
+				>
+					<label>Enable?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[Enable the «<a href='https://github.com/mage2pro/oro' target='_blank'>OroCRM</a>» integration?]]></comment>
+				</field>
+				<field
+					id='key'
+					translate='label'
+					type='obscure'
+					sortOrder='2'
+					showInDefault='1'
+					showInWebsite='1'
+					showInStore='1'
+				>
+					<label>API Key</label>
+					<comment><![CDATA[<a href='https://ocrm.pro/t/61' title='How to get your API Key' target='_blank'>How to get it?</a>]]></comment>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+					<depends>
+						<field id='enable'>1</field>
+					</depends>
+					<validate>required-entry</validate>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>
