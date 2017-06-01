@@ -19,7 +19,7 @@
 в английском алфавите.
 -->
 			<tab>_df</tab>
-			<label>OroCRM</label>
+			<label>Oro Platform</label>
 			<class>separator-top</class>
 			<!-- 2015-10-05 https://mage2.pro/t/114 -->
 			<resource>Df_Oro::config</resource>
@@ -46,7 +46,7 @@
 				>
 					<label>Enable?</label>
 					<backend_model>Df\Config\Backend\Checkbox</backend_model>
-					<comment><![CDATA[Enable the «<a href='https://github.com/mage2pro/oro' target='_blank'>OroCRM</a>» integration?]]></comment>
+					<comment><![CDATA[Enable the «<a href='https://github.com/mage2pro/oro' target='_blank'>Oro Platform</a>» integration?]]></comment>
 				</field>
 				<field
 					id='key'
