@@ -10,6 +10,12 @@ final class General extends \Df\Config\Settings {
 	function key() {return $this->p();}
 
 	/**
+	 * 2017-06-02
+	 * @return string
+	 */
+	function username() {return $this->v();}
+
+	/**
 	 * 2017-06-01
 	 * @override
 	 * @see \Df\Config\Settings::prefix()
