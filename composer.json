@@ -1,6 +1,6 @@
 {
 	"name": "mage2pro/oro"
-	,"version": "0.0.1"
+	,"version": "0.0.2"
 	,"description": "A custom integration between Magento 2 and Oro Platform."
 	,"type": "magento2-module"
 	,"homepage": "https://ocrm.pro"
