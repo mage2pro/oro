@@ -15,11 +15,13 @@ use Zend_Http_Client as C;
  * @param bool $vnd [optional]
  * @return array(string => mixed)
  */
-function df_oro_get_list($entity, array $filter = [], array $include = [], $local = false, $vnd = true) {
+function df_oro_get_list(
+	$entity, array $filter = [], array $include = [], $local = false, $vnd = true
+) {
 	/** @var C $c */
 	$c = (new C)
 		->setConfig(['timeout' => 120])
-		->setHeaders(df_oro_headers() + (!$vnd ? ['application/json'] : array_fill_keys(
+		->setHeaders(df_oro_headers() + (!$vnd ? ['content-type' => 'application/json'] : array_fill_keys(
 			['accept', 'content-type'], 'application/vnd.api+json'
 		)))
 		->setUri(
