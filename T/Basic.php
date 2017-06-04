@@ -75,8 +75,8 @@ final class Basic extends TestCase {
 
 	/** @test
 	 * 2017-06-04
-	 * How to apply a filter to a «get list» Web API request? 
-	 * Inclusion Filters: https://www.orocrm.com/documentation/2.0/book/data-api#inclusion-filter-include
+	 * «How to include related entities to a response on a Web API «get list» request?»
+	 * https://oplatform.club/t/105
 	 */
 	function t05_orders_include() {
 		/** @var C $c */
