@@ -53,7 +53,7 @@ final class Basic extends TestCase {
 
 	/**
 	 * 2017-06-04
-	 * «What is the difference beetween the «application/json» and «application/vnd.api+json»
+	 * «What is the difference between the «application/json» and «application/vnd.api+json»
 	 * content types of a Web API response?» https://oplatform.club/t/104
 	 */
 	function t04_orders_vnd() {
