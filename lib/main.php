@@ -21,9 +21,7 @@ function df_oro_get_list(
 	/** @var C $c */
 	$c = (new C)
 		->setConfig(['timeout' => 120])
-		->setHeaders(df_oro_headers() + (!$vnd ? ['content-type' => 'application/json'] : array_fill_keys(
-			['accept', 'content-type'], 'application/vnd.api+json'
-		)))
+		->setHeaders(df_oro_headers() + ['accept' => 'application/' . ($vnd ? 'vnd.api+json' : 'json')])
 		->setUri(
 			'https://'
 			. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
