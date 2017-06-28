@@ -18,23 +18,50 @@ use Zend_Http_Client as C;
 function df_oro_get_list(
 	$entity, array $filter = [], array $include = [], $local = false, $vnd = true
 ) {
-	/** @var C $c */
-	$c = (new C)
-		->setConfig(['timeout' => 120])
-		->setHeaders(df_oro_headers() + ['accept' => 'application/' . ($vnd ? 'vnd.api+json' : 'json')])
-		->setUri(
-			'https://'
-			. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
-			. "/api/extenddf$entity"
-		)
-		->setParameterGet(df_clean(['filter' => $filter, 'include' => df_csv($include)]))
-	;
-	if ($local) {
-		$c->setAdapter((new \Zend_Http_Client_Adapter_Socket)->setStreamContext([
-			'ssl' => ['allow_self_signed' => true, 'verify_peer' => false]
-		]));
+	// 2017-06-28
+	// Due to a Oro Platform bug, a Web API request can randomly fail
+	// with the «Unauthorized» response message.
+	/** @var $attempt */
+	$attempt = 1;
+	/** @var $maxAttempts */
+	$maxAttempts = 10;
+	/** @var string|null $raw */
+	$raw = null;
+	$c = null; /** @var C $c */
+	while (!$raw && $attempt++ <= $maxAttempts)  {
+		$c = (new C)
+			->setConfig(['timeout' => 120])
+			// 2017-06-28
+			// Due to a Oro Platform bug, the «content-type» headers is required for the «vnd» case,
+			// even it does not have any sense here.
+			// «Difference between the Accept and Content-Type HTTP headers»
+			// https://webmasters.stackexchange.com/questions/31212
+			->setHeaders(df_oro_headers() + (!$vnd ? ['accept' => 'application/json'] : array_fill_keys(
+				['accept', 'content-type'], 'application/vnd.api+json'
+			)))
+			->setUri(
+				'https://'
+				. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
+				. "/api/extenddf$entity"
+			)
+			->setParameterGet(df_clean(['filter' => $filter, 'include' => df_csv($include)]))
+		;
+		if ($local) {
+			$c->setAdapter((new \Zend_Http_Client_Adapter_Socket)->setStreamContext([
+				'ssl' => ['allow_self_signed' => true, 'verify_peer' => false]
+			]));
+		}
+		$raw = $c->request()->getBody();
 	}
-	return df_json_decode($c->request()->getBody());
+	if (!$raw) {
+		/** @var \Zend_Http_Response $res */
+		$res = $c->getLastResponse();
+		df_error("The last Oro Web API request fails with the message «{$res->getMessage()}».\n"
+			."The response headers:\n%s\n.The request:\n%s\n."
+			,$res->getHeadersAsString(), $c->getLastRequest()
+		);
+	}
+	return df_json_decode($raw);
 }
 
 /**
