@@ -6,7 +6,6 @@
 		<section
 			id='df_oro'
             translate='label'
-            type='text'
             showInDefault='1'
             showInWebsite='1'
             showInStore='1'
@@ -26,7 +25,6 @@
 			<group
 				id='general'
 				translate='label'
-				type='text'
 				sortOrder='1518'
 				showInDefault='1'
 				showInWebsite='1'
