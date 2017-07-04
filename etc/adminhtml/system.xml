@@ -5,10 +5,8 @@
 	<system>
 		<section
 			id='df_oro'
+            showInDefault='1' showInStore='1' showInWebsite='1'
             translate='label'
-            showInDefault='1'
-            showInWebsite='1'
-            showInStore='1'
 		>
 <!--
 2015-09-25
@@ -24,23 +22,19 @@
 			<resource>Df_Oro::config</resource>
 			<group
 				id='general'
-				translate='label'
+				showInDefault='1' showInStore='1' showInWebsite='1'
 				sortOrder='1518'
-				showInDefault='1'
-				showInWebsite='1'
-				showInStore='1'
+				translate='label'
 			>
 				<label>General</label>
 				<dfExtension>Df_Oro</dfExtension>
 				<frontend_model>Df\Config\Fieldset</frontend_model>
 				<field
 					id='enable'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='1'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
 				>
 					<label>Enable?</label>
 					<backend_model>Df\Config\Backend\Checkbox</backend_model>
@@ -48,12 +42,10 @@
 				</field>
 				<field
 					id='username'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
 					translate='label'
 					type='text'
-					sortOrder='2'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
 				>
 					<label>Username</label>
 					<comment><![CDATA[Your username in Oro Platform.]]></comment>
@@ -64,12 +56,10 @@
 				</field>
 				<field
 					id='key'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='3'
 					translate='label'
 					type='obscure'
-					sortOrder='3'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
 				>
 					<label>API Key</label>
 					<comment><![CDATA[<a href='https://ocrm.pro/t/61' title='How to get your API Key' target='_blank'>How to get it?</a>]]></comment>
