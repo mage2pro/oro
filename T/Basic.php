@@ -7,7 +7,7 @@ final class Basic extends TestCase {
 	 * «How to include related entities to a response on a Web API «get list» request?»
 	 * https://oplatform.club/t/105
 	 */
-	function t01_orders() {echo df_json_encode_pretty(df_oro_get_list(
+	function t01_orders() {echo df_json_encode(df_oro_get_list(
 		'orders', ['product' => 1], ['product', 'website'], true
 	));}
 
@@ -34,6 +34,6 @@ final class Basic extends TestCase {
 			];
 		}
 		));
-		echo df_json_encode_pretty($websites);
+		echo df_json_encode($websites);
 	}
 }
