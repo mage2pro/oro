@@ -29,8 +29,10 @@ function df_oro_get_list(
 	$raw = null;
 	$c = null; /** @var C $c */
 	while (!$raw && $attempt++ <= $maxAttempts)  {
-		$c = (new C)
-			->setConfig(['timeout' => 120])
+		$c = df_zf_http('https://'
+			. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
+			. "/api/extenddf$entity"
+		)
 			// 2017-06-28
 			// Due to a Oro Platform bug, the «content-type» headers is required for the «vnd» case,
 			// even it does not have any sense here.
@@ -39,18 +41,8 @@ function df_oro_get_list(
 			->setHeaders(df_oro_headers() + (!$vnd ? ['accept' => 'application/json'] : array_fill_keys(
 				['accept', 'content-type'], 'application/vnd.api+json'
 			)))
-			->setUri(
-				'https://'
-				. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
-				. "/api/extenddf$entity"
-			)
 			->setParameterGet(df_clean(['filter' => $filter, 'include' => df_csv($include)]))
 		;
-		if ($local) {
-			$c->setAdapter((new \Zend_Http_Client_Adapter_Socket)->setStreamContext([
-				'ssl' => ['allow_self_signed' => true, 'verify_peer' => false]
-			]));
-		}
 		$raw = $c->request()->getBody();
 	}
 	if (!$raw) {
