@@ -21,12 +21,9 @@ function df_oro_get_list(
 	// 2017-06-28
 	// Due to a Oro Platform bug, a Web API request can randomly fail
 	// with the «Unauthorized» response message.
-	/** @var $attempt */
-	$attempt = 1;
-	/** @var $maxAttempts */
-	$maxAttempts = 10;
-	/** @var string|null $raw */
-	$raw = null;
+	$attempt = 1; /** @var $attempt */
+	$maxAttempts = 10; /** @var $maxAttempts */
+	$raw = null; /** @var string|null $raw */
 	$c = null; /** @var C $c */
 	while (!$raw && $attempt++ <= $maxAttempts)  {
 		$c = df_zf_http('https://'
@@ -46,8 +43,7 @@ function df_oro_get_list(
 		$raw = $c->request()->getBody();
 	}
 	if (!$raw) {
-		/** @var \Zend_Http_Response $res */
-		$res = $c->getLastResponse();
+		$res = $c->getLastResponse(); /** @var \Zend_Http_Response $res */
 		df_error("The last Oro Web API request fails with the message «{$res->getMessage()}».\n"
 			."The response headers:\n%s\n.The request:\n%s\n."
 			,$res->getHeadersAsString(), $c->getLastRequest()
