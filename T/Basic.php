@@ -15,7 +15,7 @@ final class Basic extends TestCase {
 	function t02_orders_stripe() {
 		$customers = df_map_r(function(array $a) {return [
 			$a['id'], $a['country']						
-		];}, df_oro_get_list('customers', [], [], true, false));
+		];}, df_oro_get_list('customers', [], [], true));
 		$websites = array_values(df_map(
 			df_sort_names(
 				array_filter(

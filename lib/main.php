@@ -1,8 +1,10 @@
 <?php
+use Df\Core\Exception as DFE;
 use Df\Oro\Settings\General as S;
 use Zend_Http_Client as C;
 /**
  * 2017-06-04
+ * @used-by dfe_portal_stripe_customers()
  * @param string $entity
  * «How to apply a filter to a «get list» Web API request?» https://oplatform.club/t/103
  * @param array(string => mixed) $filter [optional]
@@ -12,12 +14,10 @@ use Zend_Http_Client as C;
  * @param bool $local [optional]
  * «What is the difference between the «application/json» and «application/vnd.api+json»
  * content types of a Web API response?» https://oplatform.club/t/104
- * @param bool $vnd [optional]
  * @return array(string => mixed)
+ * @throws DFE
  */
-function df_oro_get_list(
-	$entity, array $filter = [], array $include = [], $local = false, $vnd = true
-) {
+function df_oro_get_list($entity, array $filter = [], array $include = [], $local = false) {
 	// 2017-06-28
 	// Due to a Oro Platform bug, a Web API request can randomly fail
 	// with the «Unauthorized» response message.
@@ -27,7 +27,7 @@ function df_oro_get_list(
 	$c = null; /** @var C $c */
 	while (!$raw && $attempt++ <= $maxAttempts)  {
 		$c = df_zf_http('https://'
-			. ($local ? 'localhost.com:848/app_dev.php' : 'erp.mage2.pro')
+			. ($local ? 'localhost.com:848/index_dev.php' : 'erp.mage2.pro')
 			. "/api/extenddf$entity"
 		)
 			// 2017-06-28
@@ -35,15 +35,17 @@ function df_oro_get_list(
 			// even it does not have any sense here.
 			// «Difference between the Accept and Content-Type HTTP headers»
 			// https://webmasters.stackexchange.com/questions/31212
-			->setHeaders(df_oro_headers() + (!$vnd ? ['accept' => 'application/json'] : array_fill_keys(
+			->setHeaders(df_oro_headers() + (array_fill_keys(
 				['accept', 'content-type'], 'application/vnd.api+json'
 			)))
-			->setParameterGet(df_clean(['filter' => $filter, 'include' => df_csv($include)]))
+			->setParameterGet(df_clean([
+				'filter' => $filter, 'include' => df_csv($include), 'page' => ['size' => -1]
+			]))
 		;
 		$raw = $c->request()->getBody();
 	}
-	if (!$raw) {
-		$res = $c->getLastResponse(); /** @var \Zend_Http_Response $res */
+	$res = $c->getLastResponse(); /** @var \Zend_Http_Response $res */
+	if (!$raw || $res->isError()) {
 		df_error("The last Oro Web API request fails with the message «{$res->getMessage()}».\n"
 			."The response headers:\n%s\n.The request:\n%s\n."
 			,$res->getHeadersAsString(), $c->getLastRequest()
