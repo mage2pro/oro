@@ -1,5 +1,5 @@
 <?php
-namespace Df\Oro\T;
+namespace Df\Oro\Test;
 // 2017-06-01
 final class Basic extends TestCase {
 	/**
