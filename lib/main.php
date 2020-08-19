@@ -18,9 +18,9 @@ use Zend_Http_Client as C;
  * @throws DFE
  */
 function df_oro_get_list($entity, array $filter = [], array $include = [], $local = false) {
-	// 2017-06-28
-	// Due to a Oro Platform bug, a Web API request can randomly fail
-	// with the «Unauthorized» response message.
+	# 2017-06-28
+	# Due to a Oro Platform bug, a Web API request can randomly fail
+	# with the «Unauthorized» response message.
 	$attempt = 1; /** @var $attempt */
 	$maxAttempts = 10; /** @var $maxAttempts */
 	$raw = null; /** @var string|null $raw */
@@ -30,11 +30,11 @@ function df_oro_get_list($entity, array $filter = [], array $include = [], $loca
 			. ($local ? 'localhost.com:848/index_dev.php' : 'erp.mage2.pro')
 			. "/api/extenddf$entity"
 		)
-			// 2017-06-28
-			// Due to a Oro Platform bug, the «content-type» headers is required for the «vnd» case,
-			// even it does not have any sense here.
-			// «Difference between the Accept and Content-Type HTTP headers»
-			// https://webmasters.stackexchange.com/questions/31212
+			# 2017-06-28
+			# Due to a Oro Platform bug, the «content-type» headers is required for the «vnd» case,
+			# even it does not have any sense here.
+			# «Difference between the Accept and Content-Type HTTP headers»
+			# https://webmasters.stackexchange.com/questions/31212
 			->setHeaders(df_oro_headers() + (array_fill_keys(
 				['accept', 'content-type'], 'application/vnd.api+json'
 			)))
