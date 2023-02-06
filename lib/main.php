@@ -5,19 +5,17 @@ use Zend_Http_Client as C;
 /**
  * 2017-06-04
  * @used-by dfe_portal_stripe_customers()
- * @param string $entity
  * «How to apply a filter to a «get list» Web API request?» https://oplatform.club/t/103
  * @param array(string => mixed) $filter [optional]
  * «How to include the related entities to a response on a Web API «get list» request?»
  * https://oplatform.club/t/105
  * @param string[] $include [optional]
- * @param bool $local [optional]
  * «What is the difference between the «application/json» and «application/vnd.api+json»
  * content types of a Web API response?» https://oplatform.club/t/104
  * @return array(string => mixed)
  * @throws DFE
  */
-function df_oro_get_list(string $entity, array $filter = [], array $include = [], $local = false) {
+function df_oro_get_list(string $entity, array $filter = [], array $include = [], bool $local = false) {
 	# 2017-06-28
 	# Due to a Oro Platform bug, a Web API request can randomly fail
 	# with the «Unauthorized» response message.
