@@ -51,7 +51,7 @@ function df_oro_get_list(string $entity, array $filter = [], array $include = []
  * @used-by df_oro_get_list()
  * @return array(string => string)
  */
-function df_oro_headers(string $username = '', string $key = '') {
+function df_oro_headers(string $username = '', string $key = ''):array {
 	/** @var string $created */
 	$created = date('c');
 	/** @var string $nonce */
