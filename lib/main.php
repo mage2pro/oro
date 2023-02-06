@@ -52,10 +52,8 @@ function df_oro_get_list(string $entity, array $filter = [], array $include = []
  * @return array(string => string)
  */
 function df_oro_headers(string $username = '', string $key = ''):array {
-	/** @var string $created */
-	$created = date('c');
-	/** @var string $nonce */
-	$nonce = base64_encode(substr(md5(uniqid(gethostname() . '_', true)), 0, 16));
+	$created = date('c'); /** @var string $created */
+	$nonce = base64_encode(substr(md5(uniqid(gethostname() . '_', true)), 0, 16)); /** @var string $nonce */
 	return [
 		'Authorization' => 'WSSE profile="UsernameToken"'
 		,'X-WSSE' => 'UsernameToken ' . df_csv_pretty(df_map_k(function($k, $v) {return
