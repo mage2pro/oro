@@ -20,7 +20,7 @@ final class Basic extends TestCase {
 			df_sort_names(
 				array_filter(
 					df_oro_get_list('orders', ['product' => 1], ['website'], true)['included']
-					,function(array $a) {return
+					,function(array $a):bool {return
 						'extenddfwebsites' === $a['type']
 						&& 'magento_2' === dfa_deep($a, 'relationships/platform/data/id')
 					;}
