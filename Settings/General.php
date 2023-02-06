@@ -11,6 +11,7 @@ final class General extends \Df\Config\Settings {
 
 	/**
 	 * 2017-06-02
+	 * @used-by df_oro_headers()
 	 */
 	function username():string {return $this->v();}
 
