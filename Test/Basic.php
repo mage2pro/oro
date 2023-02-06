@@ -12,7 +12,7 @@ final class Basic extends TestCase {
 	)));}
 
 	/** @test */
-	function t02_orders_stripe() {
+	function t02_orders_stripe():void {
 		$customers = df_map_r(function(array $a) {return [
 			$a['id'], $a['country']						
 		];}, df_oro_get_list('customers', [], [], true));
