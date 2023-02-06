@@ -13,7 +13,7 @@ final class Basic extends TestCase {
 
 	/** @test */
 	function t02_orders_stripe():void {
-		$customers = df_map_r(function(array $a) {return [
+		$customers = df_map_r(function(array $a):array {return [
 			$a['id'], $a['country']						
 		];}, df_oro_get_list('customers', [], [], true));
 		$websites = array_values(df_map(
