@@ -5,6 +5,7 @@ namespace Df\Oro\Settings;
 final class General extends \Df\Config\Settings {
 	/**
 	 * 2017-06-01
+	 * @used-by df_oro_headers()
 	 */
 	function key():string {return $this->p();}
 
