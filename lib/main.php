@@ -56,7 +56,7 @@ function df_oro_headers(string $username = '', string $key = ''):array {
 	$nonce = base64_encode(substr(md5(uniqid(gethostname() . '_', true)), 0, 16)); /** @var string $nonce */
 	return [
 		'Authorization' => 'WSSE profile="UsernameToken"'
-		,'X-WSSE' => 'UsernameToken ' . df_csv_pretty(df_map_k(function($k, $v) {return
+		,'X-WSSE' => 'UsernameToken ' . df_csv_pretty(df_map_k(function(string $k, string $v) {return
 		"$k=\"$v\""
 	;}, [
 		'Username' => $username ?: S::s()->username()
