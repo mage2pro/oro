@@ -47,8 +47,8 @@ function df_oro_get_list(string $entity, array $filter = [], array $include = []
 }
 
 /**
- * 2017-06-02
- * «How is «oro:wsse:generate-header» implemented?» https://oplatform.club/t/84
+ * 2017-06-02 «How is «oro:wsse:generate-header» implemented?» https://oplatform.club/t/84
+ * @used-by df_oro_get_list()
  * @param string|null $username [optional]
  * @param string|null $key [optional]
  * @return array(string => string)
