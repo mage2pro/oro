@@ -31,12 +31,8 @@ function df_oro_get_list(string $entity, array $filter = [], array $include = []
 			# even it does not have any sense here.
 			# «Difference between the Accept and Content-Type HTTP headers»
 			# https://webmasters.stackexchange.com/questions/31212
-			->setHeaders(df_oro_headers() + (array_fill_keys(
-				['accept', 'content-type'], 'application/vnd.api+json'
-			)))
-			->setParameterGet(df_clean([
-				'filter' => $filter, 'include' => df_csv($include), 'page' => ['size' => -1]
-			]))
+			->setHeaders(df_oro_headers() + (array_fill_keys(['accept', 'content-type'], 'application/vnd.api+json')))
+			->setParameterGet(df_clean(['filter' => $filter, 'include' => df_csv($include), 'page' => ['size' => -1]]))
 		;
 		$raw = $c->request()->getBody();
 	}
