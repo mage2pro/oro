@@ -16,9 +16,7 @@ use Zend_Http_Client as C;
  * @throws DFE
  */
 function df_oro_get_list(string $entity, array $filter = [], array $include = [], bool $local = false):array {
-	# 2017-06-28
-	# Due to a Oro Platform bug, a Web API request can randomly fail
-	# with the «Unauthorized» response message.
+	# 2017-06-28 Due to a Oro Platform bug, a Web API request can randomly fail with the «Unauthorized» response message.
 	$attempt = 1; /** @var $attempt */
 	$maxAttempts = 10; /** @var $maxAttempts */
 	$raw = null; /** @var string|null $raw */
