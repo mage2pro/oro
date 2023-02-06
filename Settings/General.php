@@ -10,9 +10,8 @@ final class General extends \Df\Config\Settings {
 
 	/**
 	 * 2017-06-02
-	 * @return string
 	 */
-	function username() {return $this->v();}
+	function username():string {return $this->v();}
 
 	/**
 	 * 2017-06-01
