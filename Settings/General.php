@@ -5,9 +5,8 @@ namespace Df\Oro\Settings;
 final class General extends \Df\Config\Settings {
 	/**
 	 * 2017-06-01
-	 * @return string
 	 */
-	function key() {return $this->p();}
+	function key():string {return $this->p();}
 
 	/**
 	 * 2017-06-02
