@@ -60,9 +60,7 @@ function df_oro_headers(string $username = '', string $key = ''):array {
 		"$k=\"$v\""
 	;}, [
 		'Username' => $username ?: S::s()->username()
-		,'PasswordDigest' => base64_encode(sha1(implode([
-			base64_decode($nonce), $created, $key ?: S::s()->key()
-		]), true))
+		,'PasswordDigest' => base64_encode(sha1(implode([base64_decode($nonce), $created, $key ?: S::s()->key()]), true))
 		,'Nonce' => $nonce
 		,'Created' => $created
 	]))];
