@@ -1,6 +1,6 @@
 <?php
 use Df\Core\Exception as DFE;
-use Df\Oro\Settings\General as S;
+use Dfe\Oro\Settings\General as S;
 use Zend_Http_Client as C;
 /**
  * 2017-06-04

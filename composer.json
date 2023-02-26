@@ -1,6 +1,6 @@
 {
 	"name": "mage2pro/oro"
-	,"version": "1.2.1"
+	,"version": "1.2.2"
 	,"description": "Oro Platform integration with Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://oplatform.club"
@@ -12,5 +12,5 @@
 		"role": "Developer"
 	}]
 	,"require": {"mage2pro/core": ">=4.4.0"}
-	,"autoload": {"files": ["registration.php"], "psr-4": {"Df\\Oro\\": ""}}
+	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\Oro\\": ""}}
 }

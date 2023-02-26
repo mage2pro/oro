@@ -1,5 +1,5 @@
 <?php
-namespace Df\Oro\Settings;
+namespace Dfe\Oro\Settings;
 # 2017-06-01
 /** @method static General s() */
 final class General extends \Df\Config\Settings {
