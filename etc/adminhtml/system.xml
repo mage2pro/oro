@@ -27,7 +27,7 @@ So the `sortOrder` value is 1920. -->
 			<label>Oro Platform</label>
 			<class>separator-top</class>
 			<!-- 2015-10-05 https://mage2.pro/t/114 -->
-			<resource>Df_Oro::config</resource>
+			<resource>Dfe_Oro::config</resource>
 			<group
 				id='general'
 				showInDefault='1' showInStore='1' showInWebsite='1'
@@ -35,7 +35,7 @@ So the `sortOrder` value is 1920. -->
 				translate='label'
 			>
 				<label>General</label>
-				<dfExtension>Df_Oro</dfExtension>
+				<dfExtension>Dfe_Oro</dfExtension>
 				<frontend_model>Df\Config\Fieldset</frontend_model>
 				<field
 					id='enable'
@@ -70,7 +70,7 @@ So the `sortOrder` value is 1920. -->
 					type='obscure'
 				>
 					<label>API Key</label>
-					<comment><![CDATA[<a href='https://ocrm.pro/t/61' title='How to get your API Key' target='_blank'>How to get it?</a>]]></comment>
+					<comment><![CDATA[<a href='https://oplatform.club/t/61' title='How to get your API Key' target='_blank'>How to get it?</a>]]></comment>
 					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
 					<depends>
 						<field id='enable'>1</field>
