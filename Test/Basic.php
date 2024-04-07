@@ -17,14 +17,16 @@ final class Basic extends TestCase {
 			$a['id'], $a['country']						
 		];}, df_oro_get_list('customers', [], [], true));
 		$websites = array_values(df_map(
-			df_sort_l(
+			df_sort(
 				array_filter(
 					df_oro_get_list('orders', ['product' => 1], ['website'], true)['included']
 					,function(array $a):bool {return
 						'extenddfwebsites' === $a['type']
 						&& 'magento_2' === dfa_deep($a, 'relationships/platform/data/id')
 					;}
-				), '', function(array $a):string {return dfa_deep($a, 'attributes/domain');}
+				)
+				,function(array $a):string {return dfa_deep($a, 'attributes/domain');}
+				,true
 			), function(array $a) use($customers):array {$at = $a['attributes']; return [
 				'country' => $customers[dfa_deep($a, 'relationships/dfcustomer_websites/data/id')]
 				,'edition' => $at['m2_is_enterprise']  ? 'Enterprise' : 'Community'
