@@ -24,7 +24,7 @@ final class Basic extends TestCase {
 						'extenddfwebsites' === $a['type']
 						&& 'magento_2' === dfa_deep($a, 'relationships/platform/data/id')
 					;}
-				), null, function(array $a):string {return dfa_deep($a, 'attributes/domain');}
+				), '', function(array $a):string {return dfa_deep($a, 'attributes/domain');}
 			), function(array $a) use($customers):array {$at = $a['attributes']; return [
 				'country' => $customers[dfa_deep($a, 'relationships/dfcustomer_websites/data/id')]
 				,'edition' => $at['m2_is_enterprise']  ? 'Enterprise' : 'Community'
