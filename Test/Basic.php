@@ -17,7 +17,7 @@ final class Basic extends TestCase {
 			$a['id'], $a['country']						
 		];}, df_oro_get_list('customers', [], [], true));
 		$websites = array_values(df_map(
-			df_sort_names(
+			df_sort_l(
 				array_filter(
 					df_oro_get_list('orders', ['product' => 1], ['website'], true)['included']
 					,function(array $a):bool {return
